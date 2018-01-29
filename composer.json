@@ -1,0 +1,13 @@
+{
+    "name": "stephanedemotte/acf-origin",
+    "description": "Acf unique and slug field",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Stephane Demotte",
+            "email": "stephane@demotte.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
