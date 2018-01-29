@@ -81,7 +81,7 @@ class origin_acf_field_unique extends acf_field {
 							$(document).on('input', unique, updateTitle)
 						})
 					}
-					/* origin_unique_is_title() */
+					origin_unique_is_title()
 				})(jQuery);
       </script>
     <?php
