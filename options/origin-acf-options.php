@@ -14,6 +14,9 @@ class origin_acf_options {
     $users = get_field('clean_admin_ui', 'origin');
     $current_user = wp_get_current_user();
 
+    if(!$users)
+      return;
+
     $clean = false;
 
     foreach($users as $user):
