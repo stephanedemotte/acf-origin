@@ -1,9 +1,9 @@
 <?php
 
 /*
-Plugin Name: ACF Origin
+Plugin Name: Origin
 Plugin URI: PLUGIN_URL
-Description: Origin ACF
+Description: Origin
 Version: 1.0.0
 Author: Stephane Demotte
 Author URI: NULL
@@ -13,9 +13,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 if( ! defined( 'ABSPATH' ) ) exit;
 
-if( !class_exists('origin_acf_plugin') ) :
+if( !class_exists('origin_plugin') ) :
 
-  class origin_acf_plugin {
+  class origin_plugin {
     var $settings;
 
     function __construct() {
@@ -26,20 +26,21 @@ if( !class_exists('origin_acf_plugin') ) :
       );
 
       add_action('acf/init', 	[$this, 'acf_init']);
-			add_action('acf/include_field_types', 	[$this, 'include_field_types']);
+			add_action('acf/include_field_types', [$this, 'acf_include_field_types']);
     }
 
     function acf_init() {
+      include_once('options/origin-acf-options.php');
       include_once('options/origin-acf-taxonomy.php');
     }
 
-    function include_field_types( $version = false ) {
+    function acf_include_field_types( $version = false ) {
       include_once('fields/origin-acf-field-unique.php');
       include_once('fields/origin-acf-field-slug.php');
     }
   }
 
-  new origin_acf_plugin();
+  new origin_plugin();
 endif;
 
 ?>
