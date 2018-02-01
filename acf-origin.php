@@ -3,7 +3,7 @@
 /*
 Plugin Name: ACF Origin
 Plugin URI: PLUGIN_URL
-Description: Origin ACF FIELDS
+Description: Origin ACF
 Version: 1.0.0
 Author: Stephane Demotte
 Author URI: NULL
@@ -24,7 +24,13 @@ if( !class_exists('origin_acf_plugin') ) :
         'url'		=> plugin_dir_url( __FILE__ ),
         'path'		=> plugin_dir_path( __FILE__ )
       );
-      add_action('acf/include_field_types', 	array($this, 'include_field_types'));
+
+      add_action('acf/init', 	[$this, 'acf_init']);
+			add_action('acf/include_field_types', 	[$this, 'include_field_types']);
+    }
+
+    function acf_init() {
+      include_once('options/origin-acf-taxonomy.php');
     }
 
     function include_field_types( $version = false ) {

@@ -7,7 +7,7 @@ class origin_acf_field_unique extends acf_field {
 
 	function __construct( $settings ) {
 		$this->name = 'unique';
-		$this->label = __('Origin/Unique', 'origin');
+		$this->label = 'Origin/Unique';
 		$this->category = 'basic';
 		$this->settings = $settings;
 
@@ -38,54 +38,23 @@ class origin_acf_field_unique extends acf_field {
 		));
 	}
 
-  function input_admin_footer() {
+  function input_admin_enqueue_scripts() {
+		wp_register_script('acf-origin-unique', "{$this->settings['url']}assets/js/origin-acf-field-unique.js", array( 'acf-input'), $this->settings['version']);
+    wp_enqueue_script('acf-origin-unique');
+	}
+
+  function input_admin_head() {
     ?>
       <style>
-        input[readonly] {
-          opacity: .7;
-          background-color: #eee !important;
-        }
+        .acf-field-object-unique .acf-field-setting-required { display: none }
       </style>
-      <script type="text/javascript">
-				(function($) {
-					function origin_unique_is_title() {
-						var search = {
-							'term-php': '#name',
-							'edit-tags-php': '#tag-name',
-							'post-new-php': '#title',
-							'post-php': '#title',
-						}
-
-						if(!search[adminpage]) return
-
-						var uniques = document.querySelectorAll('.origin_unique_is_title')
-						var title = document.querySelector(search[adminpage])
-
-						if(!uniques || !title) return
-
-						title.readOnly = true
-
-						var updateTitle = function() {
-							// because of terms ajax update
-							var names = []
-							var uniques = document.querySelectorAll('.origin_unique_is_title')
-							var title = document.querySelector(search[adminpage])
-							uniques.forEach(function(unique) {
-								if(names.indexOf(unique.value) === -1)
-									names.push(unique.value)
-								title.value = names.join(' / ')
-							})
-						}
-
-						uniques.forEach(function(unique) {
-							$(document).on('input', unique, updateTitle)
-						})
-					}
-					origin_unique_is_title()
-				})(jQuery);
-      </script>
     <?php
   }
+
+  function load_field( $field ) {
+    $field['required'] = 1;
+		return $field;
+	}
 
 	function validate_value( $valid, $value, $field, $input ){
     if(!$valid)
