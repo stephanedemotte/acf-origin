@@ -66,12 +66,6 @@ class origin_acf_options {
 				unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
 				unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
 				unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
-				// bbpress
-				//  unset($wp_meta_boxes['dashboard']['normal']['core']['bbp-dashboard-right-now']);
-				//    // yoast seo
-				//      unset($wp_meta_boxes['dashboard']['normal']['core']['yoast_db_widget']);
-				//        // gravity forms
-				//          unset($wp_meta_boxes['dashboard']['normal']['core']['rg_forms_dashboard']);
 		}, 999);
 
     add_action( 'wp_before_admin_bar_render', function() {
