@@ -5,9 +5,35 @@ if( ! class_exists('origin_acf_options') ) :
 class origin_acf_options {
 
   function __construct() {
-    require_once 'origin-acf-options-fields.php';
+    require_once 'origin-acf-fields.php';
     acf_add_options_page([ 'page_title' => 'Origin', 'post_id' => 'origin',  'menu_slug' => 'origin']);
+
+    // fix post with password
+		add_filter('acf/rest_api/works/get_fields', function($data, $request) {
+			if(isset($request['id']) && post_password_required($request['id'])):
+				$password = isset($_GET['password']) && ! empty( $_GET['password']) ? wp_unslash($_GET['password']) : NULL;
+				if($password !== get_post_field('post_password', $request['id']))
+					$data['acf'] = [];
+			endif;
+
+      return $data;
+		}, 10, 2);
+
     $this->check_clean_admin_ui();
+		$this->check_acf_rest_api();
+	}
+
+  function check_acf_rest_api() {
+    if(!get_field('split_language_keys', 'origin'))
+      return;
+
+		add_filter('acf/rest_api/works/get_fields', function($data, $request) {
+			$new = [];
+			foreach(array_dot($data) as $k => $v):
+				array_set($new, $k, $v);
+			endforeach;
+			return $new;
+		}, 10, 2);
 	}
 
   function check_clean_admin_ui() {

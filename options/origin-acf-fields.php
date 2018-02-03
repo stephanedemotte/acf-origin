@@ -22,6 +22,28 @@ acf_add_local_field_group(array(
 			'allow_null' => 0,
 			'multiple' => 1,
 		),
+		array(
+			'key' => 'field_5a75b9d6337d3',
+			'label' => '[ACF-REST-API] Split language keys',
+			'name' => 'split_language_keys',
+			'type' => 'true_false',
+			'instructions' => 'Change la structure des datas recupérés par acf-rest-api.<br>
+Nomer les champs dans ce style : fr.title, fr.meta.title, en.title, en.meta.title.<br>
+[acf][fr.title] => [acf][fr][title]<br>
+[acf][fr.meta.title] => [acf][fr][meta][title]',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => '',
+			'default_value' => 0,
+			'ui' => 1,
+			'ui_on_text' => '',
+			'ui_off_text' => '',
+		),
 	),
 	'location' => array(
 		array(
@@ -44,4 +66,4 @@ acf_add_local_field_group(array(
 ));
 
 endif;
-?>
+
