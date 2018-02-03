@@ -1,13 +1,15 @@
 {
-    "name": "stephanedemotte/acf-origin",
-    "description": "Acf unique and slug field",
-    "type": "wordpress-plugin",
-    "authors": [
-        {
-            "name": "Stephane Demotte",
-            "email": "stephane@demotte.net"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {}
+  "name": "stephanedemotte/acf-origin",
+  "description": "Origin WP plugins",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+      "name": "Stephane Demotte",
+      "email": "stephane@demotte.net"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "rappasoft/laravel-helpers": "^1.0"
+  }
 }
