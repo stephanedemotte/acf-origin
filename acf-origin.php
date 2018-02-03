@@ -25,8 +25,16 @@ if( !class_exists('origin_plugin') ) :
         'path'		=> plugin_dir_path( __FILE__ )
       );
 
+      register_activation_hook(__FILE__, [$this, 'on_plugin_activate']);
+
       add_action('acf/init', 	[$this, 'acf_init']);
 			add_action('acf/include_field_types', [$this, 'acf_include_field_types']);
+    }
+
+    function on_plugin_activate() {
+      global $wp_rewrite;
+      $wp_rewrite->set_permalink_structure('/%postname%/');
+      $wp_rewrite->flush_rules();
     }
 
     function acf_init() {
