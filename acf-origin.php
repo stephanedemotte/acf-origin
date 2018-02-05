@@ -33,7 +33,7 @@ if( !class_exists('origin_plugin') ) :
 
     function on_plugin_activate() {
       global $wp_rewrite;
-      $wp_rewrite->set_permalink_structure('/%postname%/');
+      $wp_rewrite->set_permalink_structure('/wordpress/%postname%/');
       $wp_rewrite->flush_rules();
     }
 
