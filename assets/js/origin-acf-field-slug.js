@@ -46,14 +46,29 @@
           .css({ opacity: .7, backgroundColor: '#eee' })
 
         this.$ref = $('input[name="acf[' + this.ref + ']"]')
+
+        this.pattern = this.$input.data('preview')
+        if(this.pattern != '') {
+          this.preview_link = this.pattern.replace("%value%", this.$input.val())
+          this.$preview_link = $('<a href="" target="_blank"></a>')
+            .addClass('button')
+            .css({ 'marginTop': '15px', 'display': 'inline-block'})
+            .text(this.preview_link.substr(0, 30))
+            .attr('href', window.location.origin + this.preview_link)
+
+          $('#preview-action').append(this.$preview_link).css({ 'text-align': 'left' })
+        }
       },
       render: function () {
         var $input = this.$input
+				var $preview_link = this.$preview_link
 
         var onType = function() {
           var value = acf.str_sanitize(this.value)
           value = value.split('_').join('-')
           $input.val(value)
+          if($preview_link)
+            $preview_link.hide()
         }
 
         this.$ref.off('input', onType)

@@ -13,7 +13,7 @@ class origin_acf_options {
 			if(isset($request['id']) && post_password_required($request['id'])):
 				$password = isset($_GET['password']) && ! empty( $_GET['password']) ? wp_unslash($_GET['password']) : NULL;
 				if($password !== get_post_field('post_password', $request['id']))
-					$data['acf'] = [];
+					return NULL;
 			endif;
 
       return $data;
@@ -99,6 +99,11 @@ class origin_acf_options {
       $wp_admin_bar->remove_menu('comments');
       $wp_admin_bar->remove_menu('new-content');
     });
+
+    add_action('admin_head', function() {
+      echo '<style type="text/css">#post-preview { display: none; }</style>';
+    });
+
   }
 
 }

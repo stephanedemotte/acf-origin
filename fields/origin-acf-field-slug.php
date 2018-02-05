@@ -19,6 +19,7 @@ class origin_acf_field_slug extends acf_field {
       <input
         type="text"
         readonly
+				data-preview="<?php echo esc_attr($field['origin_slug_preview_link_pattern']) ?>"
         data-ref="<?php echo esc_attr($field['origin_slug_select']) ?>"
         name="<?php echo esc_attr($field['name']) ?>"
         value="<?php echo esc_attr($field['value']) ?>" />
@@ -26,8 +27,7 @@ class origin_acf_field_slug extends acf_field {
 	}
 
   function render_field_settings( $field ) {
-    acf_enable_filter('local');
-		acf_render_field_setting( $field, array(
+		acf_render_field_setting($field, [
 			'label'			=> 'Fields',
 			'instructions'	=> 'Select text field to slug',
 			'type'			=> 'select',
@@ -38,8 +38,17 @@ class origin_acf_field_slug extends acf_field {
       'choices'   => $this->get_slug_setting_choices( $field['origin_slug_select'] ),
 			'ui'			=> 1,
 			'placeholder'	=> '',
-		));
-    acf_disable_filter('local');
+		]);
+
+		acf_render_field_setting($field, [
+			'label'			=> 'Preview link pattern',
+			'instructions'	=> 'need "%value% <br> ex: /work/%value% or /realisation/%value%',
+			'type'			=> 'text',
+			'name'			=> 'origin_slug_preview_link_pattern',
+			'allow_null' 	=> 0,
+      'required' => 0,
+			'ui'			=> 1
+		]);
 	}
 
   function input_admin_head() {
