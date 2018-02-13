@@ -8,26 +8,27 @@ class origin_acf_options {
     require_once 'origin-acf-fields.php';
     acf_add_options_page([ 'page_title' => 'Origin', 'post_id' => 'origin',  'menu_slug' => 'origin']);
 
-    // fix post with password
-		add_filter('acf/rest_api/works/get_fields', function($data, $request) {
-			if(isset($request['id']) && post_password_required($request['id'])):
-				$password = isset($_GET['password']) && ! empty( $_GET['password']) ? wp_unslash($_GET['password']) : NULL;
-				if($password !== get_post_field('post_password', $request['id']))
-					return NULL;
-			endif;
-
-      return $data;
-		}, 10, 2);
+    $post_types = array_diff(get_post_types(['_builtin' => false]), ['acf-field-group', 'acf-field']);
+    foreach($post_types as $post_type):
+      add_filter('acf/rest_api/' . $post_type . '/get_fields', function($data, $request) {
+        if(isset($request['id']) && post_password_required($request['id'])):
+          $password = isset($_GET['password']) && ! empty( $_GET['password']) ? wp_unslash($_GET['password']) : NULL;
+          if($password !== get_post_field('post_password', $request['id']))
+            return NULL;
+        endif;
+        return $data;
+      }, 10, 2);
+      $this->check_acf_rest_api($post_type);
+    endforeach;
 
     $this->check_clean_admin_ui();
-		$this->check_acf_rest_api();
 	}
 
-  function check_acf_rest_api() {
+  function check_acf_rest_api($post_type) {
     if(!get_field('split_language_keys', 'origin'))
       return;
 
-		add_filter('acf/rest_api/works/get_fields', function($data, $request) {
+		add_filter('acf/rest_api/' . $post_type . '/get_fields', function($data, $request) {
 			$new = [];
 			foreach(array_dot($data) as $k => $v):
 				array_set($new, $k, $v);
