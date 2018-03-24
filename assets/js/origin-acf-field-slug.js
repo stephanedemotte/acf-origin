@@ -72,6 +72,8 @@
 
         var onType = function() {
           var value = acf.str_sanitize(this.value)
+          if(value.slice(-1) == '_')
+            value = value.slice(0, -1)
           value = value.split('_').join('-')
           $input.val(value)
           removeLink()
