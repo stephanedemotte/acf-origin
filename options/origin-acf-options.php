@@ -10,6 +10,7 @@ class origin_acf_options {
 
     add_action( 'init', function() {
       $post_types = array_diff(get_post_types(['_builtin' => false]), ['acf-field-group', 'acf-field']);
+      $post_types['option'] = 'option';
       foreach($post_types as $post_type):
         add_filter('acf/rest_api/' . $post_type . '/get_fields', function($data, $request) {
           if(isset($request['id']) && post_password_required($request['id'])):
