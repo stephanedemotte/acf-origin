@@ -86,10 +86,6 @@ class origin_acf_options {
     ];
     foreach($submenus as $submenu) { remove_submenu_page($submenu[0], $submenu[1]); }
 
-    ?>
-    <style>.wp-menu-separator{display: none} .toplevel_page_origin{display: none}</style>
-    <?php
-
     define('UPDRAFTPLUS_ADMINBAR_DISABLE', true);
 
 		add_action('wp_dashboard_setup', function() {
@@ -112,7 +108,8 @@ class origin_acf_options {
     });
 
     add_action('admin_head', function() {
-      echo '<style type="text/css">#post-preview { display: none; }</style>';
+	echo '<style>.wp-menu-separator{display: none} .toplevel_page_origin{display: none}</style>';
+      	echo '<style type="text/css">#post-preview { display: none; }</style>';
     });
 
   }
