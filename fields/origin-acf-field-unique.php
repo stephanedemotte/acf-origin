@@ -93,5 +93,3 @@ class origin_acf_field_unique extends acf_field {
 new origin_acf_field_unique( $this->settings );
 
 endif;
-
-?>

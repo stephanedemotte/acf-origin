@@ -55,5 +55,3 @@ class origin_acf_taxonomy {
 new origin_acf_taxonomy();
 
 endif;
-
-?>

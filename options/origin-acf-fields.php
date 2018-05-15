@@ -66,4 +66,3 @@ Nomer les champs dans ce style : fr.title, fr.meta.title, en.title, en.meta.titl
 ));
 
 endif;
-

@@ -79,5 +79,3 @@ class origin_acf_field_slug extends acf_field {
 new origin_acf_field_slug( $this->settings );
 
 endif;
-
-?>

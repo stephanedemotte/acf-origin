@@ -119,6 +119,3 @@ class origin_acf_options {
 new origin_acf_options();
 
 endif;
-
-?>
-

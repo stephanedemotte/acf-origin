@@ -50,5 +50,3 @@ if( !class_exists('origin_plugin') ) :
 
   new origin_plugin();
 endif;
-
-?>
