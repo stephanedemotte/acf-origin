@@ -45,6 +45,7 @@ if( !class_exists('origin_plugin') ) :
     function acf_include_field_types( $version = false ) {
       include_once('fields/origin-acf-field-unique.php');
       include_once('fields/origin-acf-field-slug.php');
+      include_once('fields/origin-acf-field-tab-name.php');
     }
   }
 
