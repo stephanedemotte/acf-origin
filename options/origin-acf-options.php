@@ -48,20 +48,13 @@ class origin_acf_options {
 	}
 
   function check_clean_admin_ui() {
-    $users = get_field('clean_admin_ui', 'origin');
+    $roles = get_field('clean_admin_ui_role', 'origin');
     $current_user = wp_get_current_user();
+		$role = $current_user->roles ? $current_user->roles[0] : false;
 
-    if(!$users)
-      return;
+    if(!$roles) return;
 
-    $clean = false;
-
-    foreach($users as $user):
-      if($user['ID'] == $current_user->ID)
-        $clean = true;
-    endforeach;
-
-    if($clean):
+    if(array_search($role, $roles) !== false):
       add_action('admin_menu', [$this, 'clean_admin_ui'], 9999);
       add_filter('acf/settings/show_admin', '__return_false');
     endif;

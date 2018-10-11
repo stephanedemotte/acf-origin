@@ -6,10 +6,10 @@ acf_add_local_field_group(array(
 	'title' => 'Options',
 	'fields' => array(
 		array(
-			'key' => 'field_5a734005957ef',
+			'key' => 'field_5bbf92f771f4b',
 			'label' => 'Clean Admin UI',
-			'name' => 'clean_admin_ui',
-			'type' => 'user',
+			'name' => 'clean_admin_ui_role',
+			'type' => 'role_selector',
 			'instructions' => '',
 			'required' => 0,
 			'conditional_logic' => 0,
@@ -18,9 +18,9 @@ acf_add_local_field_group(array(
 				'class' => '',
 				'id' => '',
 			),
-			'role' => '',
-			'allow_null' => 0,
-			'multiple' => 1,
+			'return_value' => 'name',
+			'allowed_roles' => '',
+			'field_type' => 'multi_select',
 		),
 		array(
 			'key' => 'field_5a75b9d6337d3',
@@ -28,9 +28,9 @@ acf_add_local_field_group(array(
 			'name' => 'split_language_keys',
 			'type' => 'true_false',
 			'instructions' => 'Change la structure des datas recupérés par acf-rest-api.<br>
-Nomer les champs dans ce style : fr.title, fr.meta.title, en.title, en.meta.title.<br>
-[acf][fr.title] => [acf][fr][title]<br>
-[acf][fr.meta.title] => [acf][fr][meta][title]',
+				Nomer les champs dans ce style : fr.title, fr.meta.title, en.title, en.meta.title.<br>
+				[acf][fr.title] => [acf][fr][title]<br>
+				[acf][fr.meta.title] => [acf][fr][meta][title]',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(

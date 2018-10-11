@@ -46,6 +46,7 @@ if( !class_exists('origin_plugin') ) :
       include_once('fields/origin-acf-field-unique.php');
       include_once('fields/origin-acf-field-slug.php');
       include_once('fields/origin-acf-field-tab-name.php');
+      include_once('fields/origin-acf-field-role-selector.php');
     }
   }
 
