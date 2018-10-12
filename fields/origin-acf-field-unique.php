@@ -17,7 +17,10 @@ class origin_acf_field_unique extends acf_field {
 	function render_field( $field ) {
     $class = '';
     if($field['origin_unique_is_title'])
-      $class = 'origin_unique_is_title';
+      $class .= ' origin_unique_is_title';
+
+    if($field['origin_unique_is_slug'])
+      $class .= ' origin_unique_is_slug';
 
 		?>
       <input
@@ -35,6 +38,14 @@ class origin_acf_field_unique extends acf_field {
 			'type'			=> 'true_false',
       'ui' => 1,
 			'name'			=> 'origin_unique_is_title',
+		));
+
+		acf_render_field_setting( $field, array(
+			'label'			=> 'Slugify',
+			'instructions'	=> 'slugify me',
+			'type'			=> 'true_false',
+      'ui' => 1,
+			'name'			=> 'origin_unique_is_slug',
 		));
 	}
 
