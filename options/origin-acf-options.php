@@ -11,6 +11,7 @@ class origin_acf_options {
     add_action( 'init', function() {
       $post_types = array_diff(get_post_types(['_builtin' => false]), ['acf-field-group', 'acf-field']);
       $post_types['option'] = 'option';
+      $post_types['page'] = 'page';
 
       // add taxonomy in filter
       $terms = get_taxonomies();
