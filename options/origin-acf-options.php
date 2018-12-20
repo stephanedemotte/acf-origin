@@ -69,7 +69,7 @@ class origin_acf_options {
       'users.php',
       'plugins.php',
       'edit-comments.php',
-      'edit.php?post_type=page',
+      // 'edit.php?post_type=page',
       'edit.php',
       'update-core.php'
     ];
