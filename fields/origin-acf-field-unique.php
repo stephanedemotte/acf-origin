@@ -23,11 +23,21 @@ class origin_acf_field_unique extends acf_field {
       $class .= ' origin_unique_is_slug';
 
 		?>
+
+    <?php if($field['origin_unique_is_textarea']): ?>
+      <textarea
+        type="text"
+        class="<?php echo $class ?>"
+        name="<?php echo esc_attr($field['name']) ?>"
+      ><?php echo esc_attr($field['value']) ?></textarea>
+    <?php else: ?>
       <input
         type="text"
         class="<?php echo $class ?>"
         name="<?php echo esc_attr($field['name']) ?>"
         value="<?php echo esc_attr($field['value']) ?>" />
+    <?php endif; ?>
+
 		<?php
 	}
 
@@ -46,6 +56,14 @@ class origin_acf_field_unique extends acf_field {
 			'type'			=> 'true_false',
       'ui' => 1,
 			'name'			=> 'origin_unique_is_slug',
+		));
+
+		acf_render_field_setting( $field, array(
+			'label'			=> 'Use textarea',
+			'instructions'	=> '',
+			'type'			=> 'true_false',
+      'ui' => 1,
+			'name'			=> 'origin_unique_is_textarea',
 		));
 	}
 

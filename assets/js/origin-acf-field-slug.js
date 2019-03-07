@@ -45,7 +45,7 @@
           .prop('readonly', true)
           .css({ opacity: .7, backgroundColor: '#eee' })
 
-        this.$ref = $('input[name="acf[' + this.ref + ']"]')
+        this.$ref = $('[name="acf[' + this.ref + ']"]')
         this.$visibility = $('input[name="visibility"]')
 
         this.pattern = this.$input.data('preview')
