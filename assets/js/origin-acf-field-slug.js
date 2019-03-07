@@ -71,7 +71,8 @@
         }
 
         var onType = function() {
-          var value = acf.str_sanitize(this.value)
+          var value = this.value.replace(/\n|\r/g, ' ')
+          value = acf.str_sanitize(value)
           if(value.slice(-1) == '_')
             value = value.slice(0, -1)
           value = value.split('_').join('-')
